@@ -54,24 +54,6 @@ var textLargest2 = textArray[3];
 
 var textEqual = textArray[4];
 
-function showBtn() {
-        var element = document.getElementById('button');
-                element.innerHTML = `
-            <button type="button" id="btn" onclick="myFunction2()">Click on me </button>`;
-    }
- 
-        // var myText = compareArrays(array1, array2);
-      
-        function showNavBar() { 
-        var element = document.getElementById('nav-bar');
-                element.innerHTML = `  
-                    <ul>
-                            <li><a href ="index.html">Home</a></li>
-                            <li><a href ="application.html">My javascript application1</a></li>
-                            <li><a href ="about.html">About me</a></li>
-                        </ul>`;
-                }  
-
         function getMinValue(array) {
             var minVal = array[0];
             for (var i = 1; i<array.length; i++) {
@@ -85,7 +67,6 @@ function showBtn() {
         show();
        
         function show() {
-            showNavBar();
             showTable();
         }
 
