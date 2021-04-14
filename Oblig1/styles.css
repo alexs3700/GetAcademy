@@ -1,0 +1,100 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#nav-bar {
+    background-color: blue;
+    width: 100%;
+    height: 5vw;
+    border-bottom: 5px black solid;
+ }
+ 
+
+ #container {
+     background-color: aqua;
+     height: 23vh;
+     border:black 5px solid;
+
+ } 
+
+ #container-item {
+
+ } 
+
+ .nav-links {
+    margin-left: 0.5vw;
+ }
+
+a:link {
+    color: yellow;
+    text-decoration:double;     
+}
+
+a:active {
+    color: yellow;
+}
+
+a:hover {
+    color: red;
+}
+
+a:visited {
+    color: yellow;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 1vw;
+    padding:0;
+    margin-top: 0;
+    
+}
+
+ul > li {
+    display: inline-block;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-left: 1vw;
+}
+
+#app-item {
+    margin-left: 1vw;    
+    margin-top: 1vh;       
+    display: inline-block; 
+}
+
+.clear-left {
+    clear: left;
+}
+
+#button {
+    position: relative;
+    margin-top: 1vh;
+    left: 1vw;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: center;
+}
+
+table {
+    width: 50%;
+}
+
+#checkbox {
+    display: inline-block;
+    padding: 1vh;
+    left: 1vw;
+}
+
+#input-text-field {
+    position: relative;
+    left: 1vw;
+    top: 1vh;
+    padding-bottom: 0.7vh;
+}

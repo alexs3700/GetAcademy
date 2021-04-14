@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My javascript application1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="nav-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="application.html">My javascript web application</a></li>
+            </ul>
+        </div>
+       <div class="container-item">
+            <div id="table-content"></div>  
+        </div>
+    
+    <div class="container-item">
+        <div id="input-text-field"></div>  
+    <div id="checkbox"></div>  
+</div>   
+   <script>
+
+        var minRangeVal = 1;
+var maxRangeVal = 10;
+var numArrayElements = 5;
+
+var array1 = getRandomArray(minRangeVal, maxRangeVal, numArrayElements);
+var array2 = getRandomArray(minRangeVal, maxRangeVal, numArrayElements);
+
+var min1 = getMinValue(Array.from(array1));
+var min2 = getMinValue(Array.from(array2));
+
+var max1 = getMaxValue(Array.from(array1));
+var max2 = getMaxValue(Array.from(array2));
+
+var sorted1 = sortArray(Array.from(array1));
+var sorted2 = sortArray(Array.from(array2));       
+
+
+var sum1 = sumArrayElements(Array.from(array1));
+var sum2 = sumArrayElements(Array.from(array2));
+
+var textArray = compareArrays(array1, array2);
+var textSmallest1 = textArray[0];
+var textLargest1 = textArray[1];
+
+var textSmallest2 = textArray[2];
+var textLargest2 = textArray[3];
+
+var textEqual = textArray[4];
+
+function showBtn() {
+        var element = document.getElementById('button');
+                element.innerHTML = `
+            <button type="button" id="btn" onclick="myFunction2()">Click on me </button>`;
+    }
+ 
+        // var myText = compareArrays(array1, array2);
+      
+        function showNavBar() { 
+        var element = document.getElementById('nav-bar');
+                element.innerHTML = `  
+                    <ul>
+                            <li><a href ="index.html">Home</a></li>
+                            <li><a href ="application.html">My javascript application1</a></li>
+                            <li><a href ="about.html">About me</a></li>
+                        </ul>`;
+                }  
+
+        function getMinValue(array) {
+            var minVal = array[0];
+            for (var i = 1; i<array.length; i++) {
+                if (array[i] < minVal) {
+                    var minVal = array[i];
+                }
+            }  
+            return minVal;
+        }
+
+        show();
+       
+        function show() {
+            showNavBar();
+            showTable();
+        }
+
+        function getMaxValue(array) {
+            var maxVal = array[0];
+            for (var i = 1; i<array.length; i++) {
+                if (array[i] > maxVal) {
+                    maxVal = array[i];
+                }
+            }  
+            return maxVal
+        }
+        
+        function getRandomNumber(min, max) {          
+            var randNum = Math.floor(Math.random() * (max - min) ) + min;
+            return randNum;
+            }
+        
+        function getRandomArray(min, max, lengthArray) {
+            var tempRandNum = null;
+            var randArray = [];
+            for (var i = 0; i<lengthArray; i++) {
+        
+                tempRandNum = getRandomNumber(min, max);
+                randArray.push(tempRandNum);
+            }
+            return randArray;
+        }
+        
+        function sumArrayElements(array) {
+            var len = array.length;
+            var sum = null;
+            for (var i = 0; i<len; i++) {
+                sum += array[i];
+            }
+           return sum;
+        }
+        
+        function compareArrays(array1, array2) {
+            var sum1 = sumArrayElements(array1);
+            var sum2 = sumArrayElements(array2);
+        
+            textEqual = '';
+           
+            if (sum1 > sum2) {
+                textSmallest1 = "No";
+                textLargest1 = "Yes";
+        
+                textSmallest2 = "Yes";
+                textLargest2 = "No";
+            }
+        
+            else if (sum1 < sum2) {
+                textSmallest1 = "Yes";
+                textLargest1 = "No";
+        
+                textSmallest2 = "No";
+                textLargest2 = "Yes"; 
+            } 
+        
+            else {
+                textSmallest1 = '';
+                textLargest1 = '';
+        
+                textSmallest2 = '';
+                textLargest2 = ''; 
+        
+                textEqual = "Yes";
+            }
+
+          var textArray = [textSmallest1, textLargest1, textSmallest2, textLargest2, textEqual];
+          return textArray;        
+            }
+                    
+            function sortArray(array) {   
+                let len = array.length;
+                    for (let i = 0; i < len; i++) {
+                        for (let j = 0; j < len; j++) {
+                            if (array[j] > array[j + 1]) {
+                                let tmp = array[j];
+                                array[j] = array[j + 1];
+                                array[j + 1] = tmp;
+                                }
+                              }
+                    }
+                    return array;                
+                }
+       function showTable() {
+           
+           var element = document.getElementById('table-content');
+               element.innerHTML = `
+                       <table>
+                           <tr>
+                               <th>Array </th>
+                               <th>Sum</th>
+                               <th>Minimum value</th>
+                               <th>Maximum value</th>
+                               <th>Unsorted</th>
+                               <th>Sorted</th>
+                               <th>Smallest</th>
+                               <th>Largest</th>
+                               <th>Equal</th>
+                           </tr>
+                           <tr>
+                               <td>Array1 </td>
+                               <td>${window.sum1}</td>
+                               <td>${window.min1}</td> 
+                               <td>${window.max1}</td> 
+                               <td>${window.array1}</td> 
+                               <td>${window.sorted1}</td> 
+                               <th>${window.textSmallest1}</th>
+                               <th>${window.textLargest1}</th>
+                               <th>${window.textEqual}</th>
+                           </tr>
+                           <tr>
+                               <td>Array2 </td>
+                               <td>${window.sum2}</td>
+                               <td>${window.min2}</td> 
+                               <td>${window.max2}</td> 
+                               <td>${window.array2}</td> 
+                               <td>${window.sorted2}</td> 
+                               <th>${window.textSmallest2}</th>
+                               <th>${window.textLargest2}</th>
+                               <th>${window.textEqual}</th>
+                           </tr>
+                       </table>`;
+                   }
+   </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.12.0.css">
+</head>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="controller.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.12.0.js"></script>
+
+    <script>
+        var array1;
+        var array2;
+        var myText;
+
+
+
+        QUnit.module('click', function () {
+            QUnit.test('Find sum of an array', function (assert) {
+                array1 = [1,3,5,2,7,1];
+                let actualSum = sumArrayElements(array1);
+                let expectedSum = 19;
+                assert.equal(actualSum, expectedSum);
+            });
+        });
+
+        QUnit.module('click', function () {
+            QUnit.test('Compare arrays', function (assert) {
+                array1 = [1,3,5,2,7,1];
+                array2 = [2,6,4,7,3,1];
+                let actualArray = compareArrays(array1, array2);
+                let actualText = actualArray[3];
+                let expectedText = 'Yes'
+                assert.equal(actualText, expectedText);
+            });
+        });
+
+        QUnit.module('click', function () {
+            QUnit.test('Find max of an array', function (assert) {
+                array1 = [1,3,5,2,7,1];
+                let actualMax = getMaxValue(array1);
+                let expectedMax = 7;
+                assert.equal(actualMax, expectedMax);
+            });
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
