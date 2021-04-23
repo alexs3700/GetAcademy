@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* #app {
+            
+        } */
+
+        #btn {
+            position: absolute;
+            top: 55vh;
+            left: 40vw;
+
+        }
+
+        #resultat {
+            position: absolute;
+            top: 30vh;
+            left: 40vw;
+
+        }
+
+        #container {
+            width: fit-content;
+            position: absolute;
+            top: 40vh;
+            left: 40vw;
+            padding: 1vw;
+            border: 5px solid brown;
+            background-color: khaki;
+        }
+
+
+        #container-item {
+            width: 60px;
+            height: 75px;
+            background-color: grey;       
+            display: inline-block; 
+            border: solid black 5px;            
+        }
+
+      
+    </style>
+</head>
+<body> 
+    <div id="container"></div>
+    <div id="resultat"></div>
+
+    <div id="btn">
+        <button onclick="deal5Cards()"> Deal one card </button>
+    </div>
+
+    <script src="model.js"></script>
+    <script>
+   
+ 
+    
+
+
+        function createArray(type) {
+            for (let i = 0; i<13; i++) {
+                temp = type + '/' + valueArray[i] + '.png';
+                myArray.push(temp);
+            }
+            return myArray;
+        }
+
+        array1 = createArray('hearts')
+        array2 = createArray('diamonds')
+        array3 = createArray('spades')
+        array4 = createArray('clubs')
+        array5 = [];
+
+        cards = cards.concat(array1);
+        cards = cards.concat(array2);
+        cards = cards.concat(array3);
+        cards = cards.concat(array4);
+
+        
+      
+      
+        function getRandNum(counter) {
+            randNum = Math.floor(Math.random() * (cards.length));  
+            return randNum;
+        }
+
+
+        function deal5Cards() {
+            document.getElementById('container').innerHTML = '';
+            
+
+                for (var i = 1; i<6; i++) {
+                    randCard = dealer();     
+                    cardsOnHand.push(randCard);  
+                  
+
+                    // checkForPairs(cardsOnHand);          
+                    
+                    document.getElementById('container').innerHTML += `
+                            <div id="container-item">
+                                <img src=${randCard}>
+                            </div>`;
+                    }
+                    myFunction2(cardsOnHand);
+            }
+
+            function removeCard(randCard) {
+                let myIndex = cards.indexOf(randCard)
+                cards.splice(myIndex,1);
+            }
+
+        function dealer() {
+            counter = 0;
+            randNum = getRandNum(counter);    
+            let temp = cards[randNum]; 
+            let randCard = cards[randNum]; 
+            counter++;  
+           
+           
+            return randCard;
+        }
+
+     
+
+function myFunction2(array) {
+    for (let i = 0; i<5; i++) {
+        card = array[i]
+        let temp2 = myFunction(card)
+        myArray2.push(temp2)      
+        
+     
+        
+    }
+
+
+    myArray5 = cardCounter(myArray2);
+    console.log(myArray5);
+    let x = cardCounter(myArray5);
+    cardMove(x);
+}    
+
+function myFunction(card) {
+   let firstIndex = card.indexOf('/');
+   let secondIndex = card.indexOf('.');
+   card = card.substring(firstIndex+1, secondIndex);    
+   return card;
+}
+
+
+        
+      
+        
+        function cardCounter(array) {
+            for (let i = 0; i<array.length; i++)
+                if(array[i] == 'ace') {
+                    counter1++;
+
+                } else if (array[i] == 'two') {
+                    counter2++
+
+                } else if (array[i] == 'three') {
+                    counter3++
+
+                } else if (array[i] == 'four') {
+                    counter4++
+
+                } else if (array[i] == 'five') {
+                    counter5++
+
+                } else if (array[i] == 'six') {
+                    counter6++
+
+                } else if (array[i] == 'seven') {
+                    counter7++
+
+                } else if (array[i] == 'eight') {
+                    counter8++
+
+                } else if (array[i] == 'nine') {
+                    counter9++
+
+                } else if (array[i] == 'ten') {
+                    counter10++
+
+                } else if (array[i] == 'jack') {
+                    counter11++
+
+                } else if (array[i] == 'queen') {
+                    counter12++
+
+                } else if (array[i] == 'king') {
+                    counter13++
+
+                }
+                let counterArray = [ counter1,
+                            counter2, counter3, counter4, 
+                            counter5, counter6, counter7, 
+                            counter8, counter9, counter10, 
+                            counter11, counter12, counter13]
+
+              return counterArray;
+                
+                
+        }
+        
+
+    //     function myFunction2(counterArray) {
+    //         for (let i = 0; i<13; i++) {
+    //             counterCheckFunction(counterArray[i])
+    //     }
+    // }
+
+   
+    function cardMove(array) {  
+        let countNumSingles = 0; 
+        let countNumPairs = 0;
+        let countThreeEquals = 0;
+        let countFourEquals = 0;
+
+        let counterArray2 = [countNumSingles, countNumPairs, countThreeEquals, countFourEquals];
+        
+            for (let i = 0; i<13; i++) {           
+
+                if (array[i] == 2) {
+                    countNumPairs++;
+                } else if (array[i] == 3) {
+                    countThreeEquals++;
+                } else if (array[i] == 4) {
+                    countFourEquals++;
+                } else if (array[i] == 1){
+                    countNumSingles++;
+                }
+            }
+
+        if ( (countNumPairs == 1) && (countThreeEquals == 1) ) {
+            str =  'House';
+           
+        }
+
+        else if ( (countNumPairs == 1) && (countThreeEquals == 0) ) {
+            str = 'One pair';
+
+        } else if (countFourEquals == 1) {
+            str = 'Four equals'
+        } else if ( (countNumPairs == 2) ) {
+            str = 'Two pairs';
+        } else if ( countNumSingles == 5) {
+            str = 'Can be a good hand or a bad hand';
+        } 
+        
+        document.getElementById('resultat').innerHTML = `
+            <p>${str}</p>
+        `
+        
+    }     
+    </script>
+</body>
+</html>
