@@ -5,112 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        .strokeOnOff {
+            stroke: black;
+        }
+    </style>
+  
 </head>
 <body>
-    <div id="content">
-    </div>
-    
+    <div id="content"></div>
+
+    <script src="controller.js"></script>
     <script>
-        let max = 0;
-       
         // hjelpevariable for både view og controller
         var contentDiv = document.getElementById('content');
     
         // model
         let numbers = [7, 3, 1, 5, 8];
-        let chosenBar = ''; // Variabel for hvilken stolpe som er valgt
-     
-      
-        let temp;
-      
-        let inputValue;
+        let chosenBar = ''; 
+        let inputValue; 
+        let buttonState = 'disabled'
+        let strokeVar = '';
 
-        let str = '';
-   
-       let counterArray2 = [];
-
-        let counter = 0;
-        let array2 = [];
-        let temp2;
-        
-        let index1;
-
-    
         // view
-       
-        let idNum =  [];
-        createID(numbers);    
-        
-        let idNumArray = [];
-        searchID();
-        let lastIndex = numbers.length-1;
-        
-        max = idNumArray[lastIndex];
-
-        let counterArray = [];
-        counterArray = createCounters(numbers);       
-      
-        show();    
+        show();
         function show() {
             let svgInnerHtml = '';
-           
-           
-            for (let i = 0; i < numbers.length; i++) {    
-                svgInnerHtml += createBar(numbers[i], i + 1, idNum[i]);                
+            for (let i = 0; i < numbers.length; i++) {
+                svgInnerHtml += createBar(numbers[i], i + 1);
             }
-
-           
-    
             contentDiv.innerHTML = `
-                <div id="app">
-                    <div class="app-item">
-                        <svg id="chart" width="500" viewBox="0 0 80 60">
-                            ${svgInnerHtml}
-                        </svg><br/>
-                    </div>
-          
-
-                    <div class ="app-item">
-                        Valgt stolpe: <i>${chosenBar}</i><br />
-               
-                        Verdi:
-                        <input type="number" min="1" max="10" oninput="inputValue = this.value; errorFunction(inputValue)" />
-                        <button onclick="addBar(inputValue)">Legg til stolpe</button>
-                        <button id="change"  disabled onclick="changeBar()">Endre valgt stolpe</button><br />
-                        <button id ="remove" onclick="removeBar()" disabled >Fjerne valgt stolpe</button>    
-                    </div>
-                </div>`;
-               
+                <svg id="chart" width="500" viewBox="0 0 80 60">
+                    ${svgInnerHtml}
+                </svg><br/>
+                Valgt stolpe: <i>${chosenBar}</i>
+                <br />
+                Verdi:
+                <input type="number" min="1" max="10" oninput="inputValue = this.value" />
+                <button onclick="addBar(inputValue)">Legg til stolpe</button>
+                <button ${buttonState} onclick="changeBar(chosenBar)">Endre valgt stolpe</button><br />
+                <button ${buttonState} onclick="removeBar(chosenBar)">Fjerne valgt stolpe</button>
+                `;
             }
-
-            
-
-        function errorFunction(that) {
-            // that is a string, so must use parseInt to convert it to a number
-            inputValue = parseInt(that);
-
-          
-            if (isNaN(inputValue)) {                
-                 alert('The input is not a number')
-            } 
-
-
-            if ( (inputValue < 0) || (inputValue > 10) ) {
-                alert('The input is not in the range 1-10');
-            } 
-        }
     
-        function createBar(number, barNo, idNum) {
+        function createBar(number, barNo) {
             const width = 8;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
             let height = number * 10;
             let y = 60 - height;
-            let color = calcColor(1, 10, barNo);         
-    
-            return `<rect id=${idNum} onclick="showId(this.id)" width="${width}" height="${height}"
-                    x="${x}" y="${y}" fill="${color}"></rect>`;
+            let color = calcColor(1, 10, barNo);
+            return `<rect id="${barNo}" width="${width}" onclick="chooseBar(this.id)" height="${height}"
+                                x="${x}" y="${y}" fill="${color}"></rect>`;
+        }
+       
+
+        function addBorder(barNumber) {
+            barNumber = String(barNumber);
+            document.getElementById(barNumber).classList.add('strokeOnOff');        
+        }
+
+        function removeBorder(barNumber) {
+            barNumber = String(barNumber);
+            document.getElementById(barNumber).classList.remove('strokeOnOff');
         }
     
         function calcColor(min, max, val) {
@@ -119,124 +76,7 @@
             var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
             return colString;
         }
-     
-          function addBar(inputValue) {                    
-              max++;
-              console.log(max);
-            console.log(inputValue);
-              numbers.push(inputValue);
-              len = numbers.length;
-              let temp4 = 'id';
-              let temp5 = max
-              let temp6 = temp4 + temp5;
-              idNum.push(temp6);
-             console.log(idNum);
-              
-              show(); 
-             } 
-    
-            function createID(numbers) {
-                
-                for (let i = 0; i<numbers.length; i++) {
-                    temp = 'id';
-                    temp += i+1;
-                    idNum.push(temp);               
-                }
-            }
-
-           function buttonEnable() {  
-                
-               document.getElementById('change').disabled = false;
-               document.getElementById('remove').disabled = false;
-               }
-            
-            function buttonDisable() {
-                document.getElementById('change').disabled = true;
-                document.getElementById('remove').disabled = true;
-               }
-
-
-            function removeBar() {
-                let myIndex;
-                if (chosenBar != '') {
-                    myIndex = idNum.indexOf(chosenBar);
-                }
-              
-                numbers.splice(myIndex, 1);
-                idNum.splice(myIndex, 1);
-                show();
-               
-               
-
-            }
-
-        function changeBar(){
-            if (inputValue != ''){
-                let myIndex = idNum.indexOf(chosenBar)
-                numbers[myIndex] = inputValue;
-                show();  
-            }
-                    
-        }
-
         
-        function createCounters(numbers) {
-            let len = numbers.length;
-            let temp;
-
-            for (let i = 0; i<len; i++) {
-                temp = 0;
-                counterArray.push(temp);
-            }
-            return counterArray;
-           
-        }
-
-        
-      function showId(that) { 
-        index1 = idNum.indexOf(that); 
-             
-         
-        if (counterArray[index1] == 0) {
-            counterArray[index1]++;
-            chosenBar = that;
-            show();
-
-        } else if (counterArray[index1] == 1) {
-            counterArray[index1]--;
-            chosenBar = '';
-            show();
-        }
-
-
-        if (chosenBar != '') {
-            addBorder(chosenBar);
-            buttonEnable();
-        }         }
-   
-       function addBorder(that) {
-           document.getElementById(that).classList.add('myBorder');
-       }
-
-       function removeBorder(that) {
-            document.getElementById(that).classList.remove('myBorder');
-       }
-
-    //    function checkIfBorder(chosen) {
-    //         let boolFlagBorder = document.getElementById(chosen).classList.contains('myBorder');
-    //         return boolFlagBorder;        
-    //     }
-
-        function searchID() {
-            for (let i = 0; i<numbers.length; i++) {
-                let temp3 = idNum[i][2];
-                temp3 = parseInt(temp3);
-                
-                idNumArray.push(temp3);
-                // console.log(typeof idNumArray[0]);
-            }  
-        }
-
     </script>
 </body>
 </html>
