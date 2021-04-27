@@ -1,16 +1,3 @@
-.myBorder {
-    stroke: black;
-}
-
-#app {
-    position: absolute;    
-    top: 30vh;
-    left: 30vw;  
-}
-
-.app-item {
-    position: relative;
-    border: 10px solid lightcoral;
-    background-color: khaki;  
-    padding: 1vw;
-}
+ .strokeOnOff {
+            stroke: black;
+        }
