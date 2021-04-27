@@ -5,52 +5,97 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>QUnit Example</title>
-    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.10.0.css">
-</head> 
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
 
 <body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
-    <script src="https://code.jquery.com/qunit/qunit-2.10.0.js"></script> -->
-    <script src="model.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
     <script src="controller.js"></script>
-    <script>       
-
-    QUnit.module('test1', function () {
-          QUnit.test("Remove bar from numbers list", function (assert) {
-            let actual = removeBar(chosenBar);
-            let expected = [7, 3, 5, 8];
-            assert.deepEqual(actual, expected);
-        });
-    });
+    <!-- <script src="view.js"></script> -->
+    <script>
+         // hjelpevariable for både view og controller
+         var contentDiv = document.getElementById('content');
     
+        // model
+        let numbers = [7, 3, 1, 5, 8];
+        let chosenBar = ''; 
+        let inputValue; 
+        let buttonState = 'disabled'
+        let strokeVar = '';
 
-    QUnit.module('test2', function () {
-          QUnit.test("Add bar to numbers list", function (assert) {            
-             let actual = addBar(inputValue);
-            let expected = [7, 3, 1, 5, 8, 3];
-            assert.deepEqual(actual, expected);
-        });
-    });
-
-
-    QUnit.module('test3', function () {
-          QUnit.test("Change bar", function (assert) {
-             let actual = changeBar();
-            let expected = inputValue;
-            assert.deepEqual(actual, expected);
-        });
-    });
-
-    QUnit.module('test4', function () {
-          QUnit.test("Change chosenBar", function (assert) {
-            let actual = showId(chosenBar);
-            let expected = 'id3';
-            assert.deepEqual(actual, expected);
-        });
-    });
-
+        // addBar(inputValue);
+        // removeBar(chosenBar);
+        // changeBar(inputValue);
+        // chooseBar(barNumber);
     
+        let len1 = numbers.length;
+
+        QUnit.test("Add bar", function (assert) {
+            numbers = [7, 3, 1, 5, 8];
+            inputValue = 1;
+            addBar(inputValue);
+            let len2 = numbers.length;
+            let lastIndex = len2-1;          
+            assert.equal(len2, len1+1);
+            assert.equal(numbers[lastIndex], 1);
+        });
+
+       
+
+
+        QUnit.test("Remove bar", function (assert) {
+            numbers = [7, 3, 1, 5, 8];
+            chosenBar = '3';
+            removeBar(chosenBar);
+            let len3 = numbers.length;
+            let expectedNumbers = [7, 3, 5, 8];                 
+            
+           
+            assert.equal(len3, len1-1);
+            assert.deepEqual(numbers, [7, 3, 5, 8]);
+
+           
+        });
+
+        QUnit.test("Change bar", function (assert) {
+            numbers = [7, 3, 1, 5, 8];
+            inputValue = 3;
+            chosenBar = 4;
+            changeBar(chosenBar)
+
+            let expected = [7, 3, 1, 3, 8];
+            let actual = numbers;
+            assert.deepEqual(expected, actual);
+        });
+
+        QUnit.test("Choose bar", function (assert) {
+            numbers = [7, 3, 1, 5, 8];
+
+            let chosenBar1 = '3';
+            let chosenBar2 = '2';
+            let chosenBar3 = '';
+
+
+            chooseBar(chosenBar1);
+            let actualChosenBar1 = chosenBar;
+            let expectedChosenBar1 = '3';
+
+            chooseBar(chosenBar2);
+            let actualChosenBar2 = chosenBar;
+            let expectedChosenBar2 = '2';
+
+            chooseBar(chosenBar3);
+            let actualChosenBar3 = chosenBar;
+            let expectedChosenBar3 = '';
+
+            assert.equal(actualChosenBar1, expectedChosenBar1);
+            assert.equal(actualChosenBar2, expectedChosenBar2);
+            assert.equal(actualChosenBar3, expectedChosenBar3);
+        });
+
+
     </script>
 </body>
 
