@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #content > div {
+            color: green;
+            background-color: lightgray;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 2px;
+            font-size: 500%;
+            font-family: helvetica;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #content > div.first {
+                clear: left;
+            }
+
+        #app {
+            width: fit-content;
+            background-color: khaki;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        let board = ['x', 'o', 'x', 
+                     'o', 'x', 'o',
+                     'x', 'o', 'x'];
+
+
+    showBoard();
+    function showBoard() {
+        let html = '';
+        let state = '';
+        for (let i = 0; i<9; i++) {
+            if ( (i == 0) || (i == 3) || (i == 6) ) {
+                state = 'class="first"';
+            } else {
+               state = '';
+            }
+            html += `<div id="${i+1}" ${state}>${board[i]}</div>` // 
+    }
+    document.getElementById('content').innerHTML = html;    
+}
+
+// myFunction(board);
+
+// function myFunction(myBoard) {
+//     for (let i = 0; i<myBoard.length; i++) {        
+//         if (myBoard[i] == 'x') {
+//             // let  myId = String(i+1);
+//             document.getElementById(String(i+1)).innerHTML = 'x';
+
+//         } else {
+//             document.getElementById(String(i+1)).innerHTML = 'o';
+
+//     }
+//     }
+// }
+
+    </script>
+</body>
+</html>

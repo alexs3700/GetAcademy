@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tre på rad</title>
+    <style type="text/css">
+        #content > div {
+            color: green;
+            background-color: lightgray;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 2px;
+            font-size: 500%;
+            font-family: helvetica;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #content > div.first {
+                clear: left;
+            }
+
+        #app {
+            width: fit-content;
+            background-color: khaki;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    1. Grunnleggende HTML
+    2. Kjøre Javascript-kommandoer ved klikk på noe på websiden
+    3. Hente ut element i Javascript - "this" eller via id
+    4. Endre HTML til et element vha. Javascript.
+    -->
+
+    <div id="content"></div>
+   
+    <script type="text/javascript">
+    let board = new Array(9);
+
+    for (let i = 0; i < board.length; i++) {
+        board[i] = '';
+    }
+
+    
+  
+  
+  
+
+    // Call setRandom() before calling showBoard()
+    let emptyPlace = board.length;
+    showBoard();
+    function showBoard() {
+        let html = '';
+        let state = '';
+        for (let i = 0; i<9; i++) {
+            if ( (i == 0) || (i == 3) || (i == 6) ) {
+                state = 'class="first"';
+            } else {
+               state = '';
+            }
+            html += `<div id="${i+1}" onclick="setX(this)" ${state}></div>` // 
+    }
+    document.getElementById('content').innerHTML = html;    
+}
+
+    function setX(divElement){
+    
+        let index1 = divElement.id-1;
+        if ( (divElement.innerHTML !== 'x' ) && (divElement.innerHTML !== 'o' ) ) {
+            board[index1] = 'x';
+            divElement.innerHTML = 'x';              
+        } 
+        setRandomPosition();                  
+            } 
+
+    function setRandomPosition() {
+        let array = findEmptyPlaces();
+                let len = array.length;
+
+                if (len > 0) {
+                        let index2 = Math.floor(Math.random() * len);
+                        let randIndex = array[index2];
+                        board[randIndex] = 'o'
+                        let myId = String(randIndex + 1);
+                        document.getElementById(myId).innerHTML = 'o';
+                    }
+                }
+        
+        function findEmptyPlaces() {
+            let array = (Array.from(board.keys()).filter(i=>board[i] == ''));
+            return array;
+        }
+  
+    </script>
+</body>
+</html>
