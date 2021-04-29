@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>Ferdighet 7 - Sette variabel til resultat av et regnestykke. </p>
+    <input id="bredde" type="range" min="1" max="1000" step="1" value="1" oninput="divSize()"/>
+    <input id="høyde" type="range" min="1" max="1000" step="1" value="1" oninput="divSize()"/>
+    
+    <div id="myDiv"></div>
+    <div id="resultatHtml" style="font-family: monospace"></div>
+    <p id="page"></div>
+
+    <script>
+        var bredde1 = document.getElementById('bredde');
+        var høyde1 = document.getElementById('høyde');
+        var areal;
+        var resultatDiv = document.getElementById('myDiv');
+        var resultatHtmlDiv = document.getElementById('resultatHtml')
+        var page1 = document.getElementById('page');
+
+             
+
+        function initSize() {
+            showDiv(1, 1);
+        }
+        
+
+        function divSize() {
+            initSize();
+            var x = bredde1.value;
+            var y = høyde1.value;
+
+            var areal = x * y;
+            var omkrets = (2 * x) + (2 * y)
+
+            page1.innerHTML = "Areal: " + areal + "\n Omkrets: " + omkrets; 
+
+            showDiv(x, y);
+            
+                              
+        }
+
+        
+
+        function showDiv(x, y) {
+            
+            resultatDiv.innerHTML = '<div style="'
+                + 'background-color:blue;'
+                + 'width: ' + x + 'px;'
+                + 'height: ' + y + 'px;'
+                + '">' 
+                + '</div>';
+                resultatHtmlDiv.innerText = resultatDiv.innerHTML;
+            }
+
+        
+    </script>
+</body>
+</html>

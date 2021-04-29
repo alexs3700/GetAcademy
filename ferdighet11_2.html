@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body onload="testOnLoad()">
+    <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+    <input type="text" onchange="myFunction('testOnChange')" oninput="myFunction('testOnInput')" />
+    <h3 onmouseover="myFunction('testOnMouseOver')"" onmouseout="myFunction('testOnMouseOut')">Test test test</h3>
+    <h2 id="info"></h2>
+
+    <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">Mer informasjon her</a>
+    <script>
+        function myFunction(myObj) {
+        if (myObj == "testOnLoad")
+            document.getElementById('info').innerHTML += '<li>onload</li>';
+        
+
+        if (myObj == "testOnChange") {
+            document.getElementById('info').innerHTML += '<li>onchange</li>';
+        }
+
+        if (myObj == "testOnInput") {
+            document.getElementById('info').innerHTML += '<li>oninput</li>';
+        }
+        
+        if (myObj == "testOnMouseOver")
+            {
+            document.getElementById('info').innerHTML += '<li>onmouseover</li>';
+        }
+
+        if (myObj == "testOnMouseOut") {
+            document.getElementById('info').innerHTML += '<li>onmouseout</li>';
+        }
+    }
+    </script>
+</body>
+</html>

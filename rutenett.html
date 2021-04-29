@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> </title>
+    <style> 
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+        div.page {
+            height:150px;
+            width:150px;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: "firkant1 firkant2 firkant3"
+                                 "firkant4 firkant5 firkant6"
+                                 "firkant7 firkant8 firkant9";
+        }
+        div.firkant1 {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            grid-area: firkant1;
+            text-align: center;
+        }
+
+        div.firkant2 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            grid-area: firkant2;
+            text-align: center;
+        }
+
+        div.firkant3 {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            grid-area: firkant3;
+            text-align: center;
+        }
+
+        div.firkant4 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            grid-area: firkant4;
+            text-align: center;
+        }
+
+        div.firkant5 {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            grid-area: firkant5;
+            text-align: center;
+        }
+
+        div.firkant6 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            grid-area: firkant6;
+            text-align: center;
+        }
+
+        div.firkant7 {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            grid-area: firkant7;
+            text-align: center;
+        }
+
+        div.firkant8 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            grid-area: firkant8;
+            text-align: center;
+        }
+
+        div.firkant9 {
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            grid-area: firkant9;
+            text-align: center;
+
+        }
+
+
+
+
+    
+    
+    </style>
+</head>
+    <div class="page">
+        <div class="firkant1"> 1</div>
+        <div class="firkant2"> 2</div>
+        <div class = "firkant3" id="a1" onclick="myFunction()" > 3 </div>       
+        <div class="firkant4"> 4 </div>
+        <div class="firkant5"> 5 </div>
+        <div class="firkant6"> 6 </div>
+
+        <div class="firkant7"> 7 </div>
+        <div class="firkant8"> 8 </div>
+        <div class="firkant9"> 9 </div>
+    </div>
+
+    <script>
+        function myFunction() {
+            document.getElementById('.firkant3.a1').innerHTML = '<img src = "alexander.jpg" class = "firkant3">'
+
+        }
+    </script>
+<body>
+
+</body>
+
+</html>

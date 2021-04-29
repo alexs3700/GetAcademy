@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #screen {
+            width: 300px;
+            height: 30px;
+            border: solid black 5px;
+            }
+
+        #firkant {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: solid black 2px;
+        }
+       
+    </style>
+<body>
+    <p>Ferdighet 4 - Variabel utenfor funksjon og innenfor funksjon, samt sette sammen tekst av flere deler</p>
+    <div id="screen"></div>
+        <div id="rad1">
+            <button id="btn1" onclick="myFunction(this)">1</button>
+            <button id="btn2" onclick="myFunction(this)">2</button>
+            <button id="btn3" onclick="myFunction(this)">3</button>
+        </div>
+
+        <div id="rad2">
+            <button id="btn3" onclick="myFunction(this)">4</button>
+            <button id="btn4" onclick="myFunction(this)">5</button>
+            <button id="btn5" onclick="myFunction(this)">6</button>
+        </div>
+
+        <div id="rad3">
+            <button id="btn6" onclick="myFunction(this)">7</button>
+            <button id="btn7" onclick="myFunction(this)">8</button>
+            <button id="btn8" onclick="myFunction(this)">9</button>
+        </div>
+
+        <div id="firkant"> </div>
+    
+
+    <div id="info">Tast inn passord (3 tall) </div>
+
+    <script>
+        var password1 = "123"
+        var x, y, z;
+        function myFunction(clickedBtn) {
+            x = document.getElementById('screen').innerHTML += clickedBtn.innerHTML;
+            
+            
+        if (x == password1) {
+            document.getElementById('firkant').style.backgroundColor = 'green';
+        } 
+        
+    }  
+    </script>
+</body>
+</html>

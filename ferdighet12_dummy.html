@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+
+    <script>
+    // Model
+    var randNumb; 
+    var myStr;
+
+    
+
+    // a: 97
+    // z: 122
+    
+    // æ: 230
+    // ø: 248
+    // å: 229
+    
+    
+
+    
+     
+
+    // View
+    show();
+    function show() {
+    document.getElementById('app').innerHTML = `
+        <button onclick = "getRandomNumber()">Get a random number!</button>
+        <div id="myDiv"><(div)>`;
+        
+        }
+        
+    // Controller
+    function getRandomNumber() {
+            randNumb = 97 + Math.floor(Math.random() * ((122 - 97) + 1));
+            unicodeToChar();            
+        }
+
+    function unicodeToChar() {
+        var  x = String.fromCharCode(randNumb);
+        document.getElementById('myDiv').innerHTML = x;
+        console.log(x);
+
+    }
+
+
+    </script>
+    
+</body>
+</html>

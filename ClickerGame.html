@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            font-size: 20px;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // model
+        var points = 0;
+        var pointsPerClick = 1;
+        var smileyIndex = 0;
+        var textCheat = 'You cheated!!!';
+        var numOfClicks = 0;      
+    
+
+        // controller
+        function doClick() {
+            points += pointsPerClick;
+            numOfClicks += 1;
+            smileyIndex = 1 - smileyIndex;
+            updateView()
+        }
+
+        function cheatFunction() {   
+            points *= 10;
+            pointsPerClick *= 10;
+            updateView();            
+        } 
+
+        function resetFunction() {
+            points = 0
+            pointsPerClick = 1;
+            numOfClicks = 0;
+            updateView();
+        }
+
+        function cheatFunction() {
+            alert(`${textCheat}`);           
+        }
+       
+            
+
+        
+
+        
+
+        // view
+        updateView();
+        function updateView() {
+            var smiley = smileyIndex == 0 ? '😀' : '😁';
+            
+            document.getElementById('app').innerHTML = `
+                <div id="image" onclick="doClick()"><br><hr><hr>${smiley}<hr><hr></div>
+                <div id="pointsInfo1">"Points when not cheated: " ${numOfClicks}</div>
+                <div id="pointsInfo2"><hr>"Cheat points 10 times regular points: "${points}</div>
+                <div id="pointsInfo3"><hr>"Cheat points per click: "${pointsPerClick} <hr><br></div>
+                <button onclick="cheatFunction()">Jukseknappe (10x)</button>
+                <button onclick="resetFunction()">Reset all values </button>
+            `;
+            if (numOfClicks != points) {
+                cheatFunction();
+            }
+        }
+    </script>
+</body>
+
+</html>

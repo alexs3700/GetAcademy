@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+
+    </style>
+</head>
+<body>
+    <div id="page1"></div>
+
+    <button class="button" id="btn1" onclick="placeWord(this)">sokkene</button>
+    <button class="button" id="btn2" onclick="placeWord(this)">byen</button>
+
+    <div id="page2"></div>
+    
+    <script>
+        var teller = 0;
+        var ordListe1 = ['____', '____'];
+        var ordListe2 = ['', ''];
+
+        function placeWord(myObj) {
+            var x = myObj.innerHTML;
+            teller++;
+        }
+
+        function placeWordsInArray() {
+
+        }
+
+        if (teller = 1) {
+            updateHistory
+        }
+
+        function updateHistory(aWord) {
+            document.getElementById('page1').innerHTML = `
+                                <div class = 'historie1'>
+                                Det var en mann som gikk seg i vill i bare ${ordListe[0]}.<br>
+                                Han var så stor at ${ordListe[1]} gikk for mat. '
+                                </div>`;            
+        }
+    
+        /*
+
+        var ordListe1 = ['____', '____']
+        var ordListe2 = ['sokkene', 'byen'];
+
+        show1(ordListe1);
+        show2(ordListe2);
+
+        function show1(ordListe) {
+            document.getElementById('page1').innerHTML = `
+                                <div class = 'historie1'>
+                                Det var en mann som gikk seg i vill i bare ${ordListe[0]}.<br>
+                                Han var så stor at ${ordListe[1]} gikk for mat. '
+                                </div>`;
+        }
+
+        function show2(ordListe) {
+            document.getElementById('page2').innerHTML = `
+                                <div class = 'historie2'>
+                                Det var en mann som gikk seg i vill i bare ${ordListe[0]}.<br>
+                                Han var så stor at ${ordListe[1]} gikk for mat. '
+                                </div>`;
+        }
+        */
+
+    </script>
+
+
+
+
+    <!--
+    // Modell
+
+
+    // View
+    function updateView() {
+
+    }
+
+
+    // Controller
+    function mvController() {
+
+    }
+
+        -->
+
+
+</body>
+</html>
